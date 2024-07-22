@@ -6,13 +6,13 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/22 05:01:56 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/22 05:09:13 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	seat(t_init_data data)
+int	seat(t_opt opt)
 {
 
 }
