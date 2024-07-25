@@ -6,15 +6,29 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 08:38:16 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/25 10:26:22 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file host.c
+ * @dontinclude host.c
+ * @line /\* *********
+ * @until /\* *********
+ */
 
 #include <stdlib.h>
 #include "philo.h"
 
 void	*breakfast(void *data);
 
+/**
+ * @brief Allocate array of forks and threads
+ * 
+ * @param global 
+ * @param threads 
+ * @retval int 
+ */
 static int	allocate(t_global *global, t_thread **threads)
 {
 	*threads = 0;
@@ -27,6 +41,12 @@ static int	allocate(t_global *global, t_thread **threads)
 	return (0);
 }
 
+/**
+ * @brief Initialize forks and printing mutexes
+ * 
+ * @param global 
+ * @retval int 
+ */
 static int	initialize(t_global *global)
 {
 	int	i;
@@ -46,6 +66,13 @@ static int	initialize(t_global *global)
 	return (0);
 }
 
+/**
+ * @brief Spawn philos and wait for them to complete
+ * 
+ * @param global 
+ * @param thread 
+ * @retval int 
+ */
 static int	create_threads(t_global *global, t_thread *thread)
 {
 	int		i;
@@ -73,6 +100,13 @@ static int	create_threads(t_global *global, t_thread *thread)
 	return (res);
 }
 
+/**
+ * @brief Allocate for, initialize, seat, wait on (pun intended),
+ * and free all philos
+ * 
+ * @param opt 
+ * @retval int 
+ */
 int	seat(t_opt opt)
 {
 	t_global		global;

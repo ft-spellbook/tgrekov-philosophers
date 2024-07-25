@@ -11,14 +11,13 @@ SRC_NAMES =	main.c						\
 			utils/atoul_errable.c		\
 			utils/cancellable_sleep.c	\
 			utils/err.c					\
-			utils/ft_isspace.c			\
 			utils/timestamp.c			\
 			utils/wrap_ix.c
 			
 CC = cc
 CC_EXT_SRCS = -lpthread
 FLAGS = -I$(INC_DIR) -Ofast -Wall -Wextra -Werror
-DEBUG_FLAGS = -I$(INC_DIR) -g -fsanitize=address,undefined,integer
+DEBUG_FLAGS = -I$(INC_DIR) -g #-fsanitize=address,undefined,integer
 
 ################################################################################
 

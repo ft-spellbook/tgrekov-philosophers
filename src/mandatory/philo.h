@@ -6,9 +6,16 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 08:23:26 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/25 10:24:04 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/**
+ * @file philo.h
+ * @dontinclude philo.h
+ * @line /\* *********
+ * @until /\* *********
+ */
 
 #ifndef PHILO_H
 # define PHILO_H
