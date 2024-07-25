@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   timestamp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 04:45:16 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/23 04:58:04 by tgrekov          ###   ########.fr       */
+/*   Created: 2024/07/23 04:46:29 by tgrekov           #+#    #+#             */
+/*   Updated: 2024/07/23 04:53:08 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <sys/time.h>
 
-int				atoi_errable(const char *str, int *n);
-void			cancellable_sleep(unsigned long ms, int *cond);
-int				err(const char *str, int retval);
-unsigned long	timestamp(void);
+unsigned long	timestamp(void)
+{
+	struct timeval	t;
 
-#endif
+	gettimeofday(&t, 0);
+	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+}

@@ -6,12 +6,14 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/22 05:11:18 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/25 06:58:45 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
+
+# include <pthread.h>
 
 typedef struct s_opt
 {
@@ -22,11 +24,18 @@ typedef struct s_opt
 	int	eat_n;
 }	t_opt;
 
-typedef struct s_philo
+typedef struct t_global
 {
-	int	i;
-	int	last_ate;
-	int	n_ate;
-}	t_philo;
+	t_opt			opt;
+	pthread_mutex_t	printing;
+	pthread_mutex_t	*forks;
+}	t_global;
+
+typedef struct s_thread
+{
+	int			i;
+	pthread_t	thread;
+	t_global	*global;
+}	t_thread;
 
 #endif

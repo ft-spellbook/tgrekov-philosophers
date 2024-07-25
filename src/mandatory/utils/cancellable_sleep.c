@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   cancellable_sleep.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 04:45:16 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/23 04:58:04 by tgrekov          ###   ########.fr       */
+/*   Created: 2024/07/23 04:54:29 by tgrekov           #+#    #+#             */
+/*   Updated: 2024/07/23 06:31:38 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <unistd.h>
+#include "utils.h"
 
-int				atoi_errable(const char *str, int *n);
-void			cancellable_sleep(unsigned long ms, int *cond);
-int				err(const char *str, int retval);
-unsigned long	timestamp(void);
+void	cancellable_sleep(unsigned long ms, int *cond)
+{
+	unsigned long	start;
 
-#endif
+	start = timestamp();
+	while ((!cond || !*cond) && (timestamp() - start) < ms)
+		usleep(250);
+}
