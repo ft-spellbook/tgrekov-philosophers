@@ -4,7 +4,16 @@ DEBUG_NAME = debug.out
 SRC_DIR = src/mandatory
 OBJ_DIR = obj
 
-SRC_NAMES =	main.c
+SRC_NAMES =	main.c						\
+			host.c						\
+			philosopher.c				\
+			utils/atoi_errable.c		\
+			utils/atoul_errable.c		\
+			utils/cancellable_sleep.c	\
+			utils/err.c					\
+			utils/ft_isspace.c			\
+			utils/timestamp.c			\
+			utils/wrap_ix.c
 			
 CC = cc
 CC_EXT_SRCS = -lpthread

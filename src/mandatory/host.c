@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 07:03:03 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/25 08:38:16 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	seat(t_opt opt)
 	t_thread		*thread;
 	int				i;
 
+	global.death_report = 0;
 	global.opt = opt;
 	if (!allocate(&global, &thread))
 	{

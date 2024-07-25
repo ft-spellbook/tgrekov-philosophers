@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 06:58:45 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/25 08:23:26 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 typedef struct s_opt
 {
-	int	n;
-	int	tt_die;
-	int	tt_eat;
-	int	tt_sleep;
-	int	eat_n;
+	int				n;
+	unsigned long	tt_die;
+	unsigned long	tt_eat;
+	unsigned long	tt_sleep;
+	int				eat_n;
 }	t_opt;
 
 typedef struct t_global
@@ -29,12 +29,15 @@ typedef struct t_global
 	t_opt			opt;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	*forks;
+	int				death_report;
 }	t_global;
 
 typedef struct s_thread
 {
 	int			i;
 	pthread_t	thread;
+	int			last_meal;
+	int			times_ate;
 	t_global	*global;
 }	t_thread;
 
