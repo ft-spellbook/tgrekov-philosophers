@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 10:26:22 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 08:23:39 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  */
 
 #include <stdlib.h>
-#include "philo.h"
+#include "philosopher/philo.h"
 
 void	*breakfast(void *data);
 
@@ -77,7 +77,6 @@ static int	create_threads(t_global *global, t_thread *thread)
 {
 	int		i;
 	int		res;
-	void	*tres;
 
 	i = 0;
 	res = 0;
@@ -94,7 +93,7 @@ static int	create_threads(t_global *global, t_thread *thread)
 	}
 	while (i--)
 	{
-		if (pthread_join(thread[i].thread, &tres) || tres)
+		if (pthread_join(thread[i].thread, 0) || thread[i].err)
 			res = 1;
 	}
 	return (res);

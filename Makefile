@@ -6,12 +6,15 @@ OBJ_DIR = obj
 
 SRC_NAMES =	main.c						\
 			host.c						\
-			philosopher.c				\
-			utils/atoi_errable.c		\
-			utils/atoul_errable.c		\
+			philosopher/breakfast.c		\
+			philosopher/status.c		\
+			philosopher/stop.c			\
+			utils/aton_errable.c		\
 			utils/cancellable_sleep.c	\
 			utils/err.c					\
+			utils/len.c					\
 			utils/timestamp.c			\
+			utils/wrap_err.c			\
 			utils/wrap_ix.c
 			
 CC = cc

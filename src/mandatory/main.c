@@ -6,12 +6,12 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:21:41 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 09:29:22 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 08:19:21 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils/utils.h"
-#include "philo.h"
+#include "philosopher/philo.h"
 
 int	seat(t_opt opt);
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (err("n_philos time_to_die time_to_eat"
 				"time_to_sleep [eat_count]\n", 1));
-	if (atoi_errable(argv[1], &opt.n) || opt.n < 2 || opt.n > 1000)
+	if (atoi_errable(argv[1], &opt.n) || opt.n < 1 || opt.n > 1000)
 		return (err("Number of philosophers must be between 2 and 1000\n", 1));
 	if (atoul_errable(argv[2], &opt.tt_die) || opt.tt_die < 1)
 		return (err("Time to die must be between 1 "

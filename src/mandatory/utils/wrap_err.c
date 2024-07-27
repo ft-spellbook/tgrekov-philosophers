@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   wrap_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 04:42:46 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 08:36:38 by tgrekov          ###   ########.fr       */
+/*   Created: 2024/07/27 07:04:14 by tgrekov           #+#    #+#             */
+/*   Updated: 2024/07/27 07:46:16 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file err.c
- * @dontinclude err.c
+ * @file wrap_err.c
+ * @dontinclude wrap_err.c
  * @line /\* *********
  * @until /\* *********
  */
 
-#include <unistd.h>
+#include "../philosopher/philo.h"
 
 /**
- * @brief Write @p str to stderr and return @p retval
+ * @brief Utility for writing error code to an address without nullifying an
+ * existing error
  * 
- * @param str 
- * @param retval 
+ * @param thread
+ * @param n 
  * @retval int 
  */
-int	err(const char *str, int retval)
+int	wrap_err(t_thread *thread, int n)
 {
-	int	len;
-
-	len = 0;
-	if (str)
-	{
-		while (*str++)
-			len++;
-		write(2, str - len - 1, len);
-	}
-	return (retval);
+	if (n)
+		thread->err = n;
+	return (n);
 }

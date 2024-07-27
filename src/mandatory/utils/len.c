@@ -1,41 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   len.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/22 04:42:46 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 08:36:38 by tgrekov          ###   ########.fr       */
+/*   Created: 2024/07/27 05:30:32 by tgrekov           #+#    #+#             */
+/*   Updated: 2024/07/27 07:50:46 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/**
- * @file err.c
- * @dontinclude err.c
- * @line /\* *********
- * @until /\* *********
- */
-
-#include <unistd.h>
-
-/**
- * @brief Write @p str to stderr and return @p retval
- * 
- * @param str 
- * @param retval 
- * @retval int 
- */
-int	err(const char *str, int retval)
+int	ft_strlen(char *str)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (str)
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
+
+int	intlen(int n)
+{
+	int	i;
+
+	i = 0;
+	if (!n)
+		return (1);
+	while (n)
 	{
-		while (*str++)
-			len++;
-		write(2, str - len - 1, len);
+		n /= 10;
+		i++;
 	}
-	return (retval);
+	return (i);
+}
+
+int	ullen(unsigned long n)
+{
+	int	i;
+
+	i = 0;
+	if (!n)
+		return (1);
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }

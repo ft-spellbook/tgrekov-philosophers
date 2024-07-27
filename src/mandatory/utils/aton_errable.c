@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi_errable.c                                     :+:      :+:    :+:   */
+/*   aton_errable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:30:45 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 10:22:47 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 05:31:35 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file atoi_errable.c
- * @dontinclude atoi_errable.c
+ * @file aton_errable.c
+ * @dontinclude aton_errable.c
  * @line /\* *********
  * @until /\* *********
  */
@@ -50,5 +50,30 @@ int	atoi_errable(const char *str, int *n)
 		*n = *n * 10 + (*(str++) - '0');
 	}
 	*n = *n * sign;
+	return (0);
+}
+
+/**
+ * @brief Converts ascii digits from @p str to an unsigned long integer,
+ * output into @p n . Returns 0 on success, 1 on overflow.
+ * 
+ * @param[in] str 
+ * @param[out] n 
+ * @retval int 
+ */
+int	atoul_errable(const char *str, unsigned long *n)
+{
+	static const unsigned long	ft_int_max = 18446744073709551615UL;
+
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\v' || *str == '\f' || *str == '\r' || *str == '+')
+		str++;
+	*n = 0;
+	while (*str >= '0' && *str <= '9')
+	{
+		if (*n > ft_int_max / 10 || (*n == ft_int_max / 10 && *str > '5'))
+			return (1);
+		*n = *n * 10 + (*(str++) - '0');
+	}
 	return (0);
 }

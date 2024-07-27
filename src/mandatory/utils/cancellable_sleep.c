@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cancellable_sleep.c                                :+:      :+:    :+:   */
+/*   philo_sleep.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 04:54:29 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/25 10:21:52 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 08:33:02 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file cancellable_sleep.c
+ * @file philo_sleep.c
  * 
- * @dontinclude cancellable_sleep.c
+ * @dontinclude philo_sleep.c
  * @line /\* *********
  * @until /\* *********
  */
 
 #include <unistd.h>
 #include "utils.h"
-#include "../philo.h"
+#include "../philosopher/philo.h"
 
 /**
  * @brief Sleep in 200 microsecond intervals until @p ms millis have elapsed,
@@ -31,7 +31,7 @@
  * @param thread 
  * @retval int 
  */
-int	cancellable_sleep(unsigned long ms,
+int	philo_sleep(unsigned long ms,
 	int (*stop)(t_thread *thread), t_thread *thread)
 {
 	unsigned long	start;
