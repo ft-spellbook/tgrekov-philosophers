@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 07:50:35 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 10:20:06 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_thread
 	t_global	*global;
 }	t_thread;
 
-int	status(t_thread *thread, char *str, char *str2);
+int	status(t_thread *thread, char *str, char *str2, int ignore_death);
 int	stop(t_thread *thread);
 
 #endif

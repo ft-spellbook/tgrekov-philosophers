@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 07:06:01 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 08:31:12 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 10:23:15 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	stop(t_thread *thread)
 	if (timestamp() - thread->last_meal >= thread->global->opt.tt_die)
 	{
 		thread->global->death_report = 1;
-		thread->err = status(thread, "died", 0);
+		thread->err = status(thread, "died", 0, 1);
 	}
 	return (thread->global->death_report);
 }
