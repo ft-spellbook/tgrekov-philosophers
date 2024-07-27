@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:30:45 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 05:31:35 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/27 09:50:33 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	atoi_errable(const char *str, int *n)
  */
 int	atoul_errable(const char *str, unsigned long *n)
 {
-	static const unsigned long	ft_int_max = 18446744073709551615UL;
+	static const unsigned long	ft_ul_max = 18446744073709551615UL;
 
 	while (*str == ' ' || *str == '\t' || *str == '\n'
 		|| *str == '\v' || *str == '\f' || *str == '\r' || *str == '+')
@@ -71,7 +71,7 @@ int	atoul_errable(const char *str, unsigned long *n)
 	*n = 0;
 	while (*str >= '0' && *str <= '9')
 	{
-		if (*n > ft_int_max / 10 || (*n == ft_int_max / 10 && *str > '5'))
+		if (*n > ft_ul_max / 10 || (*n == ft_ul_max / 10 && *str > '5'))
 			return (1);
 		*n = *n * 10 + (*(str++) - '0');
 	}
