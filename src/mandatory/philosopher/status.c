@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 07:03:10 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 10:21:42 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/31 05:29:22 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,20 @@ static int	status_print_verify(t_thread *thread, unsigned long ts, char *str)
  * @param thread 
  * @param str 
  * @param str2
- * @param ignore_death
  * @retval int 
  */
-int	status(t_thread *thread, char *str, char *str2, int ignore_death)
+int	status(t_thread *thread, char *str, char *str2)
 {
 	int				res;
 	unsigned long	ts;
 
 	res = 0;
-	if (pthread_mutex_lock(&thread->global->printing))
-		return (1);
+	pthread_mutex_lock(&thread->global->printing);
 	ts = timestamp();
-	if ((ignore_death || !thread->global->death_report)
-		&& status_print_verify(thread, ts, str))
+	if (status_print_verify(thread, ts, str))
 		res = 1;
-	if ((ignore_death || !thread->global->death_report)
-		&& str2 && !res && status_print_verify(thread, ts, str2))
+	if (str2 && !res && status_print_verify(thread, ts, str2))
 		res = 1;
-	if (pthread_mutex_unlock(&thread->global->printing))
-		return (1);
+	pthread_mutex_unlock(&thread->global->printing);
 	return (res);
 }

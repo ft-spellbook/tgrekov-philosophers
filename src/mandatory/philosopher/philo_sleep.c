@@ -27,12 +27,10 @@
  * or @p stop has returned non-zero
  * 
  * @param ms Milliseconds to sleep
- * @param stop Function determining whether the thread needs to terminate
  * @param thread 
  * @retval int 
  */
-int	philo_sleep(unsigned long ms,
-	int (*stop)(t_thread *thread), t_thread *thread)
+int	philo_sleep(unsigned long ms, t_thread *thread)
 {
 	unsigned long	start;
 	int				stopped;
@@ -42,8 +40,8 @@ int	philo_sleep(unsigned long ms,
 	while (!stopped && (timestamp() - start) < ms)
 	{
 		stopped = usleep(200);
-		if (!stopped && stop)
+		if (!stopped)
 			stopped = stop(thread);
 	}
-	return (stopped);
+	return (stopped || check_death(thread));
 }

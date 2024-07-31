@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 10:20:06 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/07/31 06:54:42 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,23 @@ typedef struct t_global
 	t_opt			opt;
 	pthread_mutex_t	printing;
 	pthread_mutex_t	*forks;
-	int				death_report;
+	pthread_mutex_t	end_mutex;
+	int				end;
 }	t_global;
 
 typedef struct s_thread
 {
-	int			i;
-	pthread_t	thread;
-	int			err;
-	int			last_meal;
-	int			times_ate;
-	t_global	*global;
+	int				i;
+	pthread_t		thread;
+	int				err;
+	int				last_meal;
+	int				times_ate;
+	pthread_mutex_t	full;
+	t_global		*global;
 }	t_thread;
 
-int	status(t_thread *thread, char *str, char *str2, int ignore_death);
+int	status(t_thread *thread, char *str, char *str2);
+int	check_death(t_thread *thread);
 int	stop(t_thread *thread);
 
 #endif
