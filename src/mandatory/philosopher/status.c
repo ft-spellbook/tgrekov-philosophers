@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 07:03:10 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/31 05:29:22 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/02 09:31:21 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,19 @@ static int	status_print_verify(t_thread *thread, unsigned long ts, char *str)
  * 
  * @param thread 
  * @param str 
- * @param str2
+ * @param ignore_end
  * @retval int 
  */
-int	status(t_thread *thread, char *str, char *str2)
+int	status(t_thread *thread, char *str, int ignore_end)
 {
-	int				res;
 	unsigned long	ts;
 
-	res = 0;
 	pthread_mutex_lock(&thread->global->printing);
+	if (!ignore_end && check_end(thread->global))
+		return (1);
 	ts = timestamp();
 	if (status_print_verify(thread, ts, str))
-		res = 1;
-	if (str2 && !res && status_print_verify(thread, ts, str2))
-		res = 1;
+		thread->err = 1;
 	pthread_mutex_unlock(&thread->global->printing);
-	return (res);
+	return (thread->err);
 }

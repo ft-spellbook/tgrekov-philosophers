@@ -5,16 +5,17 @@ SRC_DIR = src/mandatory
 OBJ_DIR = obj
 
 SRC_NAMES =	main.c						\
-			host.c						\
+			host/seat.c					\
+			host/setup.c				\
 			philosopher/breakfast.c		\
 			philosopher/status.c		\
 			philosopher/stop.c			\
+			philosopher/sim_end.c		\
+			philosopher/philo_sleep.c	\
 			utils/aton_errable.c		\
-			utils/cancellable_sleep.c	\
 			utils/err.c					\
 			utils/len.c					\
 			utils/timestamp.c			\
-			utils/wrap_err.c			\
 			utils/wrap_ix.c
 			
 CC = cc

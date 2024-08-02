@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 07:06:01 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/31 05:30:01 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/02 09:25:51 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,20 @@
 #include "philo.h"
 
 /**
- * @brief Determine if this thread's philo should die or is full, or if another
- * philo has died
+ * @brief Determine if this thread's philo should die, or if the thread
+ * has reported an error
  * 
  * @param thread 
  * @retval int 
  */
 int	stop(t_thread *thread)
 {
-	if (thread->err
-		|| (thread->global->opt.eat_n
-			&& thread->times_ate == thread->global->opt.eat_n))
+	if (thread->err)
 		return (1);
 	if (timestamp() - thread->last_meal >= thread->global->opt.tt_die)
 	{
-		pthread_mutex_lock(&thread->global->death_mutex);
-		thread->global->death_report = 1;
-		pthread_mutex_unlock(&thread->global->death_mutex);
-		thread->err = status(thread, "died", 0, 1);
+		if (!set_end(thread->global))
+			thread->err = status(thread, "died", 1);
 		return (1);
 	}
 	return (0);

@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wrap_err.c                                         :+:      :+:    :+:   */
+/*   check_end.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 07:04:14 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 07:46:16 by tgrekov          ###   ########.fr       */
+/*   Created: 2024/07/27 13:41:24 by tgrekov           #+#    #+#             */
+/*   Updated: 2024/07/28 12:56:49 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file wrap_err.c
- * @dontinclude wrap_err.c
+ * @file sim_end.c
+ * @dontinclude sim_end.c
  * @line /\* *********
  * @until /\* *********
  */
 
-#include "../philosopher/philo.h"
+#include "philo.h"
 
 /**
- * @brief Utility for writing error code to an address without nullifying an
- * existing error
+ * @brief Check if the simulation has ended
  * 
- * @param thread
- * @param n 
+ * @param global
  * @retval int 
  */
-int	wrap_err(t_thread *thread, int n)
+int	check_end(t_global *global)
 {
-	if (n)
-		thread->err = n;
-	return (n);
+	int	end;
+
+	pthread_mutex_lock(&global->end_mutex);
+	end = global->end;
+	pthread_mutex_unlock(&global->end_mutex);
+	return (end);
+}
+
+int	set_end(t_global *global)
+{
+	int	was_set;
+
+	pthread_mutex_lock(&global->end_mutex);
+	was_set = global->end;
+	global->end = 1;
+	pthread_mutex_unlock(&global->end_mutex);
+	return (was_set);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:23 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/31 07:12:23 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/02 09:24:30 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 
 #include "../utils/utils.h"
 #include "philo.h"
-
-#include <stdio.h>
 
 /**
  * @brief Take forks, eat, release
@@ -35,24 +33,24 @@ static int	eat(t_thread *thread, int fork2)
 
 	pthread_mutex_lock(&thread->global->forks[thread->i]);
 	if (stop(thread)
-		|| wrap_err(thread, status(thread, "has taken a fork", 0, 0))
+		|| status(thread, "has taken a fork", 0)
 		|| (fork2 == thread->i
-			&& philo_sleep(thread->global->opt.tt_die, stop, thread)))
-		return (wrap_err(thread,
-				pthread_mutex_unlock(&thread->global->forks[thread->i])) + 1);
+			&& philo_sleep(thread->global->opt.tt_die, thread)))
+		return (pthread_mutex_unlock(&thread->global->forks[thread->i]) + 1);
 	pthread_mutex_lock(&thread->global->forks[fork2]);
-	res = 0;
-	if (!stop(thread) && !wrap_err(thread,
-			status(thread, "has taken a fork", "is eating", 0)))
+	res = 1;
+	if (!status(thread, "has taken a fork", 0) && !stop(thread))
 	{
 		thread->last_meal = timestamp();
-		res = philo_sleep(thread->global->opt.tt_eat, stop, thread);
-		if (++thread->times_ate == thread->global->opt.eat_n
-			&& thread->global->opt.eat_n)
-			pthread_mutex_unlock(&thread->full);
+		res = status(thread, "is eating", 0);
+		if (!res)
+		{
+			res = philo_sleep(thread->global->opt.tt_eat, thread);
+			if (++thread->times_ate == thread->global->opt.eat_n
+				&& thread->global->opt.eat_n)
+				pthread_mutex_unlock(&thread->full);
+		}
 	}
-	else
-		res = 1;
 	pthread_mutex_unlock(&thread->global->forks[thread->i]);
 	pthread_mutex_unlock(&thread->global->forks[fork2]);
 	return (res || thread->err);
@@ -74,21 +72,17 @@ void	*breakfast(void *arg)
 	thread->err = 0;
 	if (thread->global->opt.eat_n)
 		pthread_mutex_lock(&thread->full);
-	if (wrap_err(thread, status(thread, "is thinking", 0, 0)))
+	if (status(thread, "is thinking", 0))
 		return (0);
 	if (thread->i % 2
-		&& philo_sleep(thread->global->opt.tt_eat, stop, thread))
+		&& philo_sleep(thread->global->opt.tt_eat, thread))
 		return (0);
 	while (!stop(thread)
 		&& !eat(thread, wrap_ix(thread->i + 1, thread->global->opt.n))
-		&& !wrap_err(thread, status(thread, "is sleeping", 0, 0))
-		&& !philo_sleep(thread->global->opt.tt_sleep, stop, thread))
-		wrap_err(thread, status(thread, "is thinking", 0, 0));
+		&& !status(thread, "is sleeping", 0)
+		&& !philo_sleep(thread->global->opt.tt_sleep, thread))
+		status(thread, "is thinking", 0);
 	if (thread->err)
-	{
-		pthread_mutex_lock(&thread->global->death_mutex);
-		thread->global->death_report = 1;
-		pthread_mutex_unlock(&thread->global->death_mutex);
-	}
+		set_end(thread->global);
 	return (0);
 }

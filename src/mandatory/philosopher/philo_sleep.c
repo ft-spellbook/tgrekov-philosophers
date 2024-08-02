@@ -19,8 +19,8 @@
  */
 
 #include <unistd.h>
-#include "utils.h"
-#include "../philosopher/philo.h"
+#include "../utils/utils.h"
+#include "philo.h"
 
 /**
  * @brief Sleep in 200 microsecond intervals until @p ms millis have elapsed,
@@ -43,5 +43,5 @@ int	philo_sleep(unsigned long ms, t_thread *thread)
 		if (!stopped)
 			stopped = stop(thread);
 	}
-	return (stopped || check_death(thread));
+	return (stopped || check_end(thread->global));
 }

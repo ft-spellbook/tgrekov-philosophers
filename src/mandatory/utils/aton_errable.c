@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:30:45 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/07/27 09:50:33 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/02 09:31:04 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
  * @line /\* *********
  * @until /\* *********
  */
-
-#include "utils.h"
 
 /**
  * @brief Converts ascii digits from @p str to a signed integer,
