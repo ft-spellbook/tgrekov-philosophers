@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aton_errable.c                                     :+:      :+:    :+:   */
+/*   atoi_errable.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:30:45 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/08/02 09:31:04 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:13:59 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,5 @@ int	atoi_errable(const char *str, int *n)
 		*n = *n * 10 + (*(str++) - '0');
 	}
 	*n = *n * sign;
-	return (0);
-}
-
-/**
- * @brief Converts ascii digits from @p str to an unsigned long integer,
- * output into @p n . Returns 0 on success, 1 on overflow.
- * 
- * @param[in] str 
- * @param[out] n 
- * @retval int 
- */
-int	atoul_errable(const char *str, unsigned long *n)
-{
-	static const unsigned long	ft_ul_max = 18446744073709551615UL;
-
-	while (*str == ' ' || *str == '\t' || *str == '\n'
-		|| *str == '\v' || *str == '\f' || *str == '\r' || *str == '+')
-		str++;
-	*n = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		if (*n > ft_ul_max / 10 || (*n == ft_ul_max / 10 && *str > '5'))
-			return (1);
-		*n = *n * 10 + (*(str++) - '0');
-	}
 	return (0);
 }

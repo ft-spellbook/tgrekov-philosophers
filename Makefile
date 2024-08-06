@@ -12,7 +12,7 @@ SRC_NAMES =	main.c						\
 			philosopher/stop.c			\
 			philosopher/sim_end.c		\
 			philosopher/philo_sleep.c	\
-			utils/aton_errable.c		\
+			utils/atoi_errable.c		\
 			utils/err.c					\
 			utils/len.c					\
 			utils/timestamp.c			\

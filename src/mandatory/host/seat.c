@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 07:20:21 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/08/02 07:51:42 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:10:30 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,23 @@
  */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "../philosopher/philo.h"
 
 int		setup(t_global *global, t_thread **thread);
 void	*breakfast(void *data);
 
+/**
+ * @brief End simulation once all philos are full
+ * 
+ * @param global 
+ * @param thread 
+ * @param i 
+ */
 static void	monitor_eat_quota(t_global *global, t_thread *thread, int i)
 {
+	usleep((global->opt.tt_eat + global->opt.tt_sleep)
+		* (global->opt.eat_n - 1) * 1000);
 	while (i--)
 	{
 		pthread_mutex_lock(&thread[i].full);

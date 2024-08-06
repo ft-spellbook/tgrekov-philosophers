@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:59:35 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/08/02 09:21:56 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:14:22 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 
 typedef struct s_opt
 {
-	int				n;
-	unsigned long	tt_die;
-	unsigned long	tt_eat;
-	unsigned long	tt_sleep;
-	int				eat_n;
+	int	n;
+	int	tt_die;
+	int	tt_eat;
+	int	tt_sleep;
+	int	eat_n;
 }	t_opt;
 
 typedef struct t_global

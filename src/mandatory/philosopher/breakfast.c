@@ -6,7 +6,7 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:55:23 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/08/02 09:24:30 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/06 17:03:07 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,8 @@ void	*breakfast(void *arg)
 		status(thread, "is thinking", 0);
 	if (thread->err)
 		set_end(thread->global);
+	if (thread->global->opt.eat_n
+		&& thread->times_ate < thread->global->opt.eat_n)
+		pthread_mutex_unlock(&thread->full);
 	return (0);
 }
