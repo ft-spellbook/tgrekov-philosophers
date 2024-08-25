@@ -6,13 +6,13 @@
 /*   By: tgrekov <tgrekov@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 04:30:45 by tgrekov           #+#    #+#             */
-/*   Updated: 2024/08/06 17:13:59 by tgrekov          ###   ########.fr       */
+/*   Updated: 2024/08/25 12:37:38 by tgrekov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /**
- * @file aton_errable.c
- * @dontinclude aton_errable.c
+ * @file atoi_errable.c
+ * @dontinclude atoi_errable.c
  * @line /\* *********
  * @until /\* *********
  */
